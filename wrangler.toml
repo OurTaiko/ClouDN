@@ -8,7 +8,7 @@ PREVIEW_IMAGE_BASES = [
 
 [vars.FILE_MAP]
 "/api/cnsongs" = [
-  "https://raw.githubusercontent.com/KirisameVanilla/taiko-song-database-cn/refs/heads/main/songs.json",
+  "https://raw.githubusercontent.com/OurTaiko/taiko-song-database-cn/refs/heads/main/songs.json",
   "https://gitea.com/OurTaiko/taiko-song-database-cn/raw/branch/main/songs.json",
 ]
 "/api/fumendb_constants" = [
