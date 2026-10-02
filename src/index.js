@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { handleCnSongs } from './cnsongs.js'
 
 const FILE_MAP = env.FILE_MAP
 const PREVIEW_IMAGE_BASES = env.PREVIEW_IMAGE_BASES
@@ -171,7 +172,7 @@ async function handleFileMap(pathname) {
 }
 
 export default {
-  async fetch(request) {
+  async fetch(request, _env, context) {
     const url = new URL(request.url)
     const pathname = url.pathname
 
@@ -181,6 +182,15 @@ export default {
         status: 204,
         headers: corsHeaders(),
       })
+    }
+
+    if (pathname === '/api/cnsongs') {
+      return handleCnSongs(
+        request,
+        normalizeSources(FILE_MAP[pathname]),
+        context,
+        corsHeaders(),
+      )
     }
 
     // 检查是否是 /api/preview/{id}/{filename} 路由（需要在 /api/preview/{id} 之前检查）

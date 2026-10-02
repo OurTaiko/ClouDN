@@ -6,7 +6,11 @@
   },
   "scripts": {
     "dev": "wrangler dev",
+    "test": "node --test tests/*.test.cjs",
     "deploy": "wrangler deploy",
     "login": "wrangler login"
+  },
+  "dependencies": {
+    "sql.js": "^1.14.2"
   }
 }

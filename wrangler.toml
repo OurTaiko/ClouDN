@@ -1,6 +1,11 @@
 name = "cloudn"
 main = "src/index.js"
 compatibility_date = "2026-01-01"
+# sql.js reads a browser Worker URL during initialization. Cloudflare has no
+# self.location; Wasm is bundled below, so no runtime script URL is needed.
+[define]
+"self.location.href" = '""'
+
 [vars]
 PREVIEW_IMAGE_BASES = [
   "https://raw.githubusercontent.com/ourtaiko/chart-preview-database/refs/heads/main/charts",
@@ -8,8 +13,8 @@ PREVIEW_IMAGE_BASES = [
 
 [vars.FILE_MAP]
 "/api/cnsongs" = [
-  "https://raw.githubusercontent.com/OurTaiko/taiko-song-database-cn/refs/heads/main/songs.json",
-  "https://gitea.com/OurTaiko/taiko-song-database-cn/raw/branch/main/songs.json",
+  "https://raw.githubusercontent.com/OurTaiko/taiko-song-database-cn/refs/heads/main/songs.sqlite3",
+  "https://gitea.com/OurTaiko/taiko-song-database-cn/raw/branch/main/songs.sqlite3",
 ]
 "/api/fumendb_constants" = [
   "https://raw.githubusercontent.com/ourtaiko/fumen-database-scraper/refs/heads/main/songs.json",
